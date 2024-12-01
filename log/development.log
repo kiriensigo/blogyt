@@ -111,3 +111,16 @@ Processing by Api::V1::PostsController#create as */*
 Completed 201 Created in 93ms (Views: 0.9ms | ActiveRecord: 12.4ms (1 query, 0 cached) | GC: 0.0ms)
 
 
+Started POST "/api/v1/posts" for 127.0.0.1 at 2024-12-02 00:27:55 +0900
+  [1m[36mActiveRecord::SchemaMigration Load (0.3ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Processing by Api::V1::PostsController#create as */*
+  Parameters: {"title"=>"はじめての投稿", "content"=>"はじめての投稿", "post"=>{"title"=>"はじめての投稿", "content"=>"はじめての投稿"}}
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[36mbegin transaction[0m
+  ↳ app/controllers/api/v1/posts_controller.rb:20:in `create'
+  [1m[36mPost Create (3.2ms)[0m  [1m[32mINSERT INTO "posts" ("title", "content", "created_at", "updated_at") VALUES (?, ?, ?, ?) RETURNING "id"[0m  [["title", "はじめての投稿"], ["content", "はじめての投稿"], ["created_at", "2024-12-01 15:27:55.611509"], ["updated_at", "2024-12-01 15:27:55.611509"]]
+  ↳ app/controllers/api/v1/posts_controller.rb:20:in `create'
+  [1m[36mTRANSACTION (5.2ms)[0m  [1m[36mcommit transaction[0m
+  ↳ app/controllers/api/v1/posts_controller.rb:20:in `create'
+Completed 201 Created in 32ms (Views: 0.8ms | ActiveRecord: 10.7ms (1 query, 0 cached) | GC: 0.0ms)
+
+
