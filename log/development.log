@@ -189,3 +189,124 @@ Completed 500 Internal Server Error in 4ms (Views: 0.7ms | ActiveRecord: 0.1ms (
 AbstractController::DoubleRenderError (Render and/or redirect were called multiple times in this action. Please note that you may only call render OR redirect, and at most once per action. Also note that neither redirect nor render terminate execution of the action, so if you want to exit an action after redirecting, you need to do something like "redirect_to(...); return".):
   
 app/controllers/api/v1/posts_controller.rb:12:in `show'
+Started GET "/api/v1/posts/1" for 127.0.0.1 at 2024-12-04 22:16:41 +0900
+  [1m[36mActiveRecord::SchemaMigration Load (0.2ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Error occurred while parsing request parameters.
+Contents:
+
+{
+  "title": "１回目修正”,
+  "content": "１回目"
+}
+Processing by Api::V1::PostsController#show as */*
+Completed 400 Bad Request in 119ms (ActiveRecord: 0.0ms (0 queries, 0 cached) | GC: 0.0ms)
+
+
+  
+ActionDispatch::Http::Parameters::ParseError (Error occurred while parsing request parameters):
+
+Causes:
+JSON::ParserError (unexpected token at '{
+  "title": "１回目修正”')
+  
+app/controllers/api/v1/posts_controller.rb:8:in `show'
+Started GET "/api/v1/posts/1" for 127.0.0.1 at 2024-12-04 22:17:41 +0900
+Processing by Api::V1::PostsController#show as */*
+  Parameters: {"title"=>"２回目の投稿", "content"=>"２回目の投稿", "id"=>"1", "post"=>{"title"=>"２回目の投稿", "content"=>"２回目の投稿"}}
+  [1m[36mPost Load (0.5ms)[0m  [1m[34mSELECT "posts".* FROM "posts" WHERE "posts"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/api/v1/posts_controller.rb:8:in `show'
+Completed 500 Internal Server Error in 211ms (Views: 1.2ms | ActiveRecord: 3.0ms (1 query, 0 cached) | GC: 0.0ms)
+
+
+  
+AbstractController::DoubleRenderError (Render and/or redirect were called multiple times in this action. Please note that you may only call render OR redirect, and at most once per action. Also note that neither redirect nor render terminate execution of the action, so if you want to exit an action after redirecting, you need to do something like "redirect_to(...); return".):
+  
+app/controllers/api/v1/posts_controller.rb:11:in `show'
+Started GET "/api/v1/posts/1" for 127.0.0.1 at 2024-12-04 22:17:44 +0900
+Error occurred while parsing request parameters.
+Contents:
+
+{
+  "title": "１回目修正”,
+  "content": "１回目"
+}
+Processing by Api::V1::PostsController#show as */*
+Completed 400 Bad Request in 0ms (ActiveRecord: 0.0ms (0 queries, 0 cached) | GC: 0.0ms)
+
+
+  
+ActionDispatch::Http::Parameters::ParseError (Error occurred while parsing request parameters):
+
+Causes:
+JSON::ParserError (unexpected token at '{
+  "title": "１回目修正”')
+  
+app/controllers/api/v1/posts_controller.rb:8:in `show'
+Started GET "/api/v1/posts/1" for 127.0.0.1 at 2024-12-04 22:17:45 +0900
+Error occurred while parsing request parameters.
+Contents:
+
+{
+  "title": "１回目修正”,
+  "content": "１回目"
+}
+Processing by Api::V1::PostsController#show as */*
+Completed 400 Bad Request in 0ms (ActiveRecord: 0.0ms (0 queries, 0 cached) | GC: 0.0ms)
+
+
+  
+ActionDispatch::Http::Parameters::ParseError (Error occurred while parsing request parameters):
+
+Causes:
+JSON::ParserError (unexpected token at '{
+  "title": "１回目修正”')
+  
+app/controllers/api/v1/posts_controller.rb:8:in `show'
+Started GET "/api/v1/posts/1" for 127.0.0.1 at 2024-12-04 22:18:53 +0900
+Processing by Api::V1::PostsController#show as */*
+  Parameters: {"title"=>"１回目修正", "content"=>"１回目", "id"=>"1", "post"=>{"title"=>"１回目修正", "content"=>"１回目"}}
+  [1m[36mPost Load (0.1ms)[0m  [1m[34mSELECT "posts".* FROM "posts" WHERE "posts"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/api/v1/posts_controller.rb:8:in `show'
+Completed 500 Internal Server Error in 3ms (Views: 0.4ms | ActiveRecord: 0.1ms (1 query, 0 cached) | GC: 0.0ms)
+
+
+  
+AbstractController::DoubleRenderError (Render and/or redirect were called multiple times in this action. Please note that you may only call render OR redirect, and at most once per action. Also note that neither redirect nor render terminate execution of the action, so if you want to exit an action after redirecting, you need to do something like "redirect_to(...); return".):
+  
+app/controllers/api/v1/posts_controller.rb:11:in `show'
+Started PUT "/api/v1/posts/1" for 127.0.0.1 at 2024-12-04 22:18:57 +0900
+Processing by Api::V1::PostsController#update as */*
+  Parameters: {"title"=>"１回目修正", "content"=>"１回目", "id"=>"1", "post"=>{"title"=>"１回目修正", "content"=>"１回目"}}
+  [1m[36mPost Load (0.1ms)[0m  [1m[34mSELECT "posts".* FROM "posts" WHERE "posts"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/api/v1/posts_controller.rb:27:in `update'
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[36mbegin transaction[0m
+  ↳ app/controllers/api/v1/posts_controller.rb:28:in `update'
+  [1m[36mPost Update (11.0ms)[0m  [1m[33mUPDATE "posts" SET "title" = ?, "content" = ?, "updated_at" = ? WHERE "posts"."id" = ?[0m  [["title", "１回目修正"], ["content", "１回目"], ["updated_at", "2024-12-04 13:18:57.711907"], ["id", 1]]
+  ↳ app/controllers/api/v1/posts_controller.rb:28:in `update'
+  [1m[36mTRANSACTION (5.5ms)[0m  [1m[36mcommit transaction[0m
+  ↳ app/controllers/api/v1/posts_controller.rb:28:in `update'
+Completed 200 OK in 28ms (Views: 0.8ms | ActiveRecord: 16.7ms (2 queries, 0 cached) | GC: 0.0ms)
+
+
+Started DELETE "/api/v1/posts/2" for 127.0.0.1 at 2024-12-04 22:20:20 +0900
+Processing by Api::V1::PostsController#destroy as */*
+  Parameters: {"title"=>"２回目の投稿", "content"=>"２回目の投稿", "id"=>"2", "post"=>{"title"=>"２回目の投稿", "content"=>"２回目の投稿"}}
+  [1m[36mPost Load (0.1ms)[0m  [1m[34mSELECT "posts".* FROM "posts" WHERE "posts"."id" = ? LIMIT ?[0m  [["id", 2], ["LIMIT", 1]]
+  ↳ app/controllers/api/v1/posts_controller.rb:36:in `destroy'
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[36mbegin transaction[0m
+  ↳ app/controllers/api/v1/posts_controller.rb:37:in `destroy'
+  [1m[36mPost Destroy (2.5ms)[0m  [1m[31mDELETE FROM "posts" WHERE "posts"."id" = ?[0m  [["id", 2]]
+  ↳ app/controllers/api/v1/posts_controller.rb:37:in `destroy'
+  [1m[36mTRANSACTION (5.4ms)[0m  [1m[36mcommit transaction[0m
+  ↳ app/controllers/api/v1/posts_controller.rb:37:in `destroy'
+Completed 204 No Content in 17ms (ActiveRecord: 9.6ms (2 queries, 0 cached) | GC: 0.0ms)
+
+
+Started GET "/api/v1/posts/" for 127.0.0.1 at 2024-12-04 22:20:56 +0900
+Processing by Api::V1::PostsController#index as */*
+  Parameters: {"title"=>"２回目の投稿", "content"=>"２回目の投稿", "post"=>{"title"=>"２回目の投稿", "content"=>"２回目の投稿"}}
+  [1m[36mPost Load (0.1ms)[0m  [1m[34mSELECT "posts".* FROM "posts"[0m
+  ↳ app/controllers/api/v1/posts_controller.rb:4:in `index'
+Completed 200 OK in 5ms (Views: 4.4ms | ActiveRecord: 0.1ms (1 query, 0 cached) | GC: 0.0ms)
+
+
