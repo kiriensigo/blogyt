@@ -1,6 +1,13 @@
+import Head from "next/head";
 import Image from "next/image";
+import { Inter } from "next/font/google";
 import localFont from "next/font/local";
 import { revalidatePath } from "next/cache";
+
+type Props = {
+  posts: Post[];
+};
+
 
 export async function getStaticProps() {
   const res = await fetch("https://localhost:3000/api/v1/posts");
@@ -37,7 +44,7 @@ const geistMono = localFont({
   weight: "100 900",
 });
 
-export default function Home([ posts ]) {
+export default function Home({ posts }: Props) {
   return (
     <div
       className={`${geistSans.variable} ${geistMono.variable} grid grid-rows-[20px_1fr_20px] items-center justify-items-center min-h-screen p-8 pb-20 gap-16 sm:p-20 font-[family-name:var(--font-geist-sans)]`}
@@ -135,6 +142,18 @@ export default function Home([ posts ]) {
           Go to nextjs.org →
         </a>
       </footer>
-    </div>
+
+      <div>
+       {posts.map((post) => (
+         <div key={post.id} className={Styles.postCard}>
+           <Link href={'posts/${post.id}'} className={StyleSheet.postCardBox}>
+              <h2>{post.title}</h2>
+            </Link>
+            <p>{post.content}</p>
+            <button className={Styles.button}>Edit</button>
+         </div>
+    ))}
+      </div>
+    </>
   );
 }
