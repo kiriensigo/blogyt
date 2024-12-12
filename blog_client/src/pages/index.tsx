@@ -142,18 +142,21 @@ export default function Home({ posts }: Props) {
           Go to nextjs.org →
         </a>
       </footer>
-
-      <div>
-       {posts.map((post) => (
-         <div key={post.id} className={Styles.postCard}>
+      <div className={StyleSheet.homeContainer}>
+        <h2>Rails & Next.js Blog</h2>
+          <div>
+          {posts.map((post) => (
+          <div key={post.id} className={Styles.postCard}>
            <Link href={'posts/${post.id}'} className={StyleSheet.postCardBox}>
               <h2>{post.title}</h2>
             </Link>
             <p>{post.content}</p>
-            <button className={Styles.button}>Edit</button>
-         </div>
+            <button className={Styles.etitButton}>Edit</button>
+            <button className={Styles.deleteButton}>Delete</button>
+          </div>
     ))}
-      </div>
+        </div>
+      <div>
     </>
   );
 }
