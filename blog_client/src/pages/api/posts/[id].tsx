@@ -9,15 +9,16 @@ export async function getStaticPaths() {
     const posts: Post[] =await resi.json();
 
     const paths = posts.map((post) => ) ({
-        params: {id: posts.indexOf.toString()} ,
-    }));
+        params: {id: posts.indexOf.toString}
+    })
 
     return {
-        paths,
-        fallback: true,
-    };
-}
+        paths:[
+            { params: {slug: ""}}
+        ]
+    }
 
+}
 
 export async function getStaticProps({params}): { params: { id: strring } }) {
     const res = await fetch("https://localhost:3000/api/v1/posts/${params.id}");
@@ -33,8 +34,14 @@ export async function getStaticProps({params}): { params: { id: strring } }) {
     };
 }
 
-const Post = () => {
-    return <div>[id]</div>;
+const Post = ( { post }: Props ) => {
+    const router = useRouter();
+
+    if (router.isFallback) {
+        retuern <div>Loading...</div>;
+    }
+
+    return <div>詳細ページ</div>;
 };
 
 export defalut Post;
