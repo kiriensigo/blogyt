@@ -41,7 +41,13 @@ const Post = ( { post }: Props ) => {
         retuern <div>Loading...</div>;
     }
 
-    return <div>詳細ページ</div>;
+    return(
+        <div className={StyleSheet.container}>
+            <div>{post.title}</div>
+            <siv>{post.created_at}</siv>
+            <p>{post.content}</p>
+        </div>
+    );
 };
 
 export defalut Post;
