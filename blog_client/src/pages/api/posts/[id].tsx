@@ -42,10 +42,10 @@ const Post = ( { post }: Props ) => {
     }
 
     return(
-        <div className={StyleSheet.container}>
-            <div>{post.title}</div>
-            <siv>{post.created_at}</siv>
-            <p>{post.content}</p>
+        <div className={Styles.container}>
+            <div className={Styles.title}>{post.title}</div>
+            <div className={Styles.date}>{post.created_at}</siv>
+            <p className={Styles.content}>{post.content}</p>
         </div>
     );
 };
