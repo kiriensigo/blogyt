@@ -2,11 +2,12 @@ import React from "react"
 
 const CreatePost = () => {
     return (
-    <div className={StyleSheet.container}>
-        <h1 className={StyleSheet.title}>ブログ新規登録</h1>
-        <from className={StyleSheet.form>
-            <label className={StyleSheet.label}>タイトル</label>
-            <input 
+    <div className={Styles.container}>
+        <h1 className={Styles.title}>ブログ新規登録</h1>
+        <from className={Styles.form>
+            <label className={Styles.label}>タイトル</label>
+            <input type="text" className={StyleSheet.input} />
+            </input>
               type="text"
               className={StyleSheet.input}
               onChange= 
