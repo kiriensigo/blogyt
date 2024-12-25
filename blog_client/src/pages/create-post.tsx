@@ -1,14 +1,14 @@
-import React from "react"
+import React, { FormEvent } from "react"
 import styles from "../styles/Home.module.css";
 
 const CreatePost = () => {
     const [title, setTitle] = useState("");
     const [content, setContent] = useState("");
 
-    const handleSubmit = (e)
-    =>
-
-        return (
+    const handleSubmit = (e: FormEvent) => {
+        e.preventDefalut();
+    };
+     return (
     <div className={Styles.container}>
         <h1 className={Styles.title}>ブログ新規登録</h1>
         <from className={Styles.form} onSubmit={handleSubmit}>
