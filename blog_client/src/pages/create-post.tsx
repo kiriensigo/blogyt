@@ -7,7 +7,15 @@ const CreatePost = () => {
 
     const handleSubmit = (e: FormEvent) => {
         e.preventDefalut();
+
+    //APIを叩く
+    try{
+        await axios.post("http:localhost3001:/api/v1/posts");
+    } catch (err) {
+        alert("投稿に失敗しました");
+    }
     };
+
      return (
     <div className={Styles.container}>
         <h1 className={Styles.title}>ブログ新規登録</h1>
