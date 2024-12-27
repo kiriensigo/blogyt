@@ -11,6 +11,9 @@ const CreatePost = () => {
     //APIを叩く
     try{
         await axios.post("http:localhost3001:/api/v1/posts");
+        title: title,
+        content: content,
+    });
     } catch (err) {
         alert("投稿に失敗しました");
     }
