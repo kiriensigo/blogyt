@@ -13,7 +13,9 @@ const CreatePost = () => {
         await axios.post("http:localhost3001:/api/v1/posts");
         title: title,
         content: content,
-    });
+    });:
+
+    Router.push("/");
     } catch (err) {
         alert("投稿に失敗しました");
     }
