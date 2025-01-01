@@ -6,3 +6,11 @@ import { useRouter } from "next/router";
 export async function getServerSideProps(context: any) {
     const id = context.params.id;
 }
+
+const EdiPost = () => {
+    const [title, setTitle] = useState("");
+    const [content, setContent] = useState("");
+    const router = useRouter();
+    
+    
+}
