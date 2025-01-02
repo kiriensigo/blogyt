@@ -12,5 +12,26 @@ const EdiPost = () => {
     const [content, setContent] = useState("");
     const router = useRouter();
     
-    
+    const handleSubmit = async (e: FormEvent) => {
+    };
+
+    return (
+        <div className={styles.container}>
+            <h1 className={styles.title}>ブログ編集</h1>
+            <form className={styles.form} onSubmit={handleSubmit}>
+                <label className={styles.label}>タイトル</label>
+                <input
+                    type="text"
+                    className={styles.input}
+                    onChange={(e: ChangeEvent<HTMLInputElement>) =>
+                        setTitle(e.target.value)
+                    }
+                />
+                <label>本文</label>
+                <textarea />
+                <button type="submit">投稿</button>
+            </form>
+        </div>
+    );
+    )
 }
