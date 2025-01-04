@@ -5,6 +5,15 @@ import { useRouter } from "next/router";
 
 export async function getServerSideProps(context: any) {
     const id = context.params.id;
+
+    const res = await fetch('http://localhost:3001/api/v1/posts/${id}');
+    const post = await res.json();
+
+    return {
+        props: {
+            post,
+        },
+    };
 }
 
 const EdiPost = () => {
