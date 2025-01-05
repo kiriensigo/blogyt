@@ -2,6 +2,11 @@ import React, { ChangeEvent, FormEvent, useState } form "react";
 import styles from "../..styles/Home.module.css";
 import axios from "axios";
 import { useRouter } from "next/router";
+import { Post } from "@/types";
+
+type Props = {
+    post: Post;
+};
 
 export async function getServerSideProps(context: any) {
     const id = context.params.id;
@@ -16,9 +21,9 @@ export async function getServerSideProps(context: any) {
     };
 }
 
-const EdiPost = () => {
-    const [title, setTitle] = useState("");
-    const [content, setContent] = useState("");
+const EdiPost = ({ post }: Props) => {
+    const [title,}setTitle] = useState(post.title);
+    const [content, setContent] = useState(post.content);
     const router = useRouter();
     
     const handleSubmit = async (e: FormEvent) => {
