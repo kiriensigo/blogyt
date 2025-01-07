@@ -39,38 +39,43 @@ export default function EdiPost({ post }: Props) {
             }
             );
             if (response.status !== 200) {
-                throw new Error("投稿に失敗しました");
-            }
             router.push("/");
+            } else {
+                alert("Error updating post");
+            }
         } catch (err) {
-            alert("投稿に失敗しました");
+            alert("Error updating post");
+            console.error(err);
         }
     };
 
     return (
         <div className={styles.container}>
-            <h1 className={styles.title}>ブログ編集</h1>
-            <form className={styles.form} onSubmit={handleSubmit}>
-                <label className={styles.label}>タイトル</label>
-                <input
-                    type="text"
-                    className={styles.input}
-                    value={title}
-                    onChange={(e: ChangeEvent<HTMLInputElement>) =>
-                        setTitle(e.target.value)
-                    }
-                />
-                <label>本文</label>
-                <textarea />
-                <button type="submit">投稿</button>
-            </form>
+          <h1 className={styles.title}>ブログ編集</h1>
+          <form className={styles.form} onSubmit={handleSubmit}>
+            <label className={styles.label}>Title:</label>
+            <input
+              className={styles.input}
+              type="text"
+              value={title}
+              onChange={handleTitleChange}
+            />
+            <label className={styles.label}>Content:</label>
+            <textarea
+              className={styles.textarea}
+              value={content}
+              onChange={handleContentChange}
+            />
+            <button className={styles.button} type="submit">
+              Update
+            </button>
+          </form>
         </div>
-    );
-}
+      );
+    }
 
 export async function getServerSideProps(context: any) {
-    const id = context.params.id;
-
+    const id = context.params;
     const res = await fetch('http://localhost:3001/api/v1/posts/${id}');
     const post = await res.json();
 
@@ -79,33 +84,4 @@ export async function getServerSideProps(context: any) {
             post,
         },
     };
-}
-
-const EdiPost = ({ post }: Props) => {
-    const [title,}setTitle] = useState(post.title);
-    const [content, setContent] = useState(post.content);
-    const router = useRouter();
-    
-    const handleSubmit = async (e: FormEvent) => {
-    };
-
-    return (
-        <div className={styles.container}>
-            <h1 className={styles.title}>ブログ編集</h1>
-            <form className={styles.form} onSubmit={handleSubmit}>
-                <label className={styles.label}>タイトル</label>
-                <input
-                    type="text"
-                    className={styles.input}
-                    onChange={(e: ChangeEvent<HTMLInputElement>) =>
-                        setTitle(e.target.value)
-                    }
-                />
-                <label>本文</label>
-                <textarea />
-                <button type="submit">投稿</button>
-            </form>
-        </div>
-    );
-    )
 }
