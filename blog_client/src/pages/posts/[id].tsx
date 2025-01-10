@@ -34,3 +34,19 @@ export async function getStaticPaths({ params }: { params:{ id:string } }) {
         revalidate: 60,
     };
     }
+
+    export default function Post({ post }: Props) {
+        const router = useRouter();
+
+        if (router.isFallback) {
+            return <div>Loading...</div>;
+        }
+
+        return (
+            <div className={styles.container}>
+                <h1 className={styles.title}>{post.title}</h1>
+                <div className={styles.date}>Posted on {post.created_at}</div>
+                <p className={styles.content}>{post.content}</p>
+            </div>
+        );
+    }
