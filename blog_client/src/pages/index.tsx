@@ -3,35 +3,38 @@ import Image from "next/image";
 import { Inter } from "next/font/google";
 import localFont from "next/font/local";
 import { revalidatePath } from "next/cache";
+import Link from "next/link";
+import Styles from "../styles/Home.module.css";
 
 type Props = {
   posts: Post[];
 };
 
-
 export async function getStaticProps() {
-  const res = await fetch("https://localhost:3000/api/v1/posts");
-  const posts = await res.json();
+  try {
+    const res = await fetch("http://localhost:3000/api/v1/posts");
+    if (!res.ok) {
+      throw new Error(`Failed to fetch posts: ${res.statusText}`);
+    }
+    const posts = await res.json();
 
-  console.log(posts);
+    console.log(posts);
 
-  return {
-    props: {
-      posts,
-    },
-    revalidate: 60 * 60 * 24,
-  };
+    return {
+      props: {
+        posts,
+      },
+      revalidate: 60 * 60 * 24,
+    };
+  } catch (error) {
+    console.error("Error fetching posts:", error);
+    return {
+      props: {
+        posts: [],
+      },
+    };
+  }
 }
-
-export async function getStaticPaths() {}
-  return {
-    props: {
-      todo,
-    },
-  };
-}
-
-
 
 const geistSans = localFont({
   src: "./fonts/GeistVF.woff",
@@ -142,21 +145,21 @@ export default function Home({ posts }: Props) {
           Go to nextjs.org →
         </a>
       </footer>
-      <div className={StyleSheet.homeContainer}>
+      <div className={Styles.homeContainer}>
         <h2>Rails & Next.js Blog</h2>
-          <div>
+        <div>
           {posts.map((post) => (
-          <div key={post.id} className={Styles.postCard}>
-           <Link href={'posts/${post.id}'} className={StyleSheet.postCardBox}>
-              <h2>{post.title}</h2>
-            </Link>
-            <p>{post.content}</p>
-            <button className={Styles.etitButton}>Edit</button>
-            <button className={Styles.deleteButton}>Delete</button>
-          </div>
-    ))}
+            <div key={post.id} className={Styles.postCard}>
+              <Link href={`posts/${post.id}`} className={Styles.postCardBox}>
+                <h2>{post.title}</h2>
+              </Link>
+              <p>{post.content}</p>
+              <button className={Styles.etitButton}>Edit</button>
+              <button className={Styles.deleteButton}>Delete</button>
+            </div>
+          ))}
         </div>
-      <div>
-    </>
+      </div>
+    </div>
   );
 }

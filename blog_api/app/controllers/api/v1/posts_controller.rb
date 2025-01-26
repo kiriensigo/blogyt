@@ -1,7 +1,9 @@
 class Api::V1::PostsController < ApplicationController
   def index
-    @posts = Post.all
-    render json: @posts
+    posts = Post.all
+    render json: posts
+  rescue => e
+    render json: { error: e.message }, status: :internal_server_error
   end
 
   def show
